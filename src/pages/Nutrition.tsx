@@ -26,88 +26,24 @@ interface Meal {
 }
 
 const sampleMeals: Meal[] = [
-  {
-    id: "1",
-    name: "Cooling Cucumber Raita",
-    type: "breakfast",
-    dosha: "pitta",
-    prepTime: "10 min",
-    calories: 120,
-    image: "🥒",
-  },
-  {
-    id: "2",
-    name: "Coconut Mango Lassi",
-    type: "breakfast",
-    dosha: "pitta",
-    prepTime: "5 min",
-    calories: 180,
-    image: "🥭",
-  },
-  {
-    id: "3",
-    name: "Quinoa Vegetable Bowl",
-    type: "lunch",
-    dosha: "tridosha",
-    prepTime: "25 min",
-    calories: 420,
-    image: "🥗",
-  },
-  {
-    id: "4",
-    name: "Mint Coriander Chutney",
-    type: "snack",
-    dosha: "pitta",
-    prepTime: "10 min",
-    calories: 45,
-    image: "🌿",
-  },
-  {
-    id: "5",
-    name: "Basmati Rice with Ghee",
-    type: "lunch",
-    dosha: "tridosha",
-    prepTime: "20 min",
-    calories: 350,
-    image: "🍚",
-  },
-  {
-    id: "6",
-    name: "Steamed Vegetables",
-    type: "dinner",
-    dosha: "pitta",
-    prepTime: "15 min",
-    calories: 180,
-    image: "🥦",
-  },
-  {
-    id: "7",
-    name: "Golden Milk",
-    type: "dinner",
-    dosha: "tridosha",
-    prepTime: "10 min",
-    calories: 150,
-    image: "🥛",
-  },
-  {
-    id: "8",
-    name: "Rose Petal Tea",
-    type: "snack",
-    dosha: "pitta",
-    prepTime: "5 min",
-    calories: 10,
-    image: "🌹",
-  },
+  { id: "1", name: "Cooling Cucumber Raita", type: "breakfast", dosha: "pitta", prepTime: "10 min", calories: 120, image: "🥒" },
+  { id: "2", name: "Coconut Mango Lassi", type: "breakfast", dosha: "pitta", prepTime: "5 min", calories: 180, image: "🥭" },
+  { id: "3", name: "Quinoa Vegetable Bowl", type: "lunch", dosha: "tridosha", prepTime: "25 min", calories: 420, image: "🥗" },
+  { id: "4", name: "Mint Coriander Chutney", type: "snack", dosha: "pitta", prepTime: "10 min", calories: 45, image: "🌿" },
+  { id: "5", name: "Basmati Rice with Ghee", type: "lunch", dosha: "tridosha", prepTime: "20 min", calories: 350, image: "🍚" },
+  { id: "6", name: "Steamed Vegetables", type: "dinner", dosha: "pitta", prepTime: "15 min", calories: 180, image: "🥦" },
+  { id: "7", name: "Golden Milk", type: "dinner", dosha: "tridosha", prepTime: "10 min", calories: 150, image: "🥛" },
+  { id: "8", name: "Rose Petal Tea", type: "snack", dosha: "pitta", prepTime: "5 min", calories: 10, image: "🌹" },
 ];
 
 const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const mealTypes = ["breakfast", "lunch", "dinner", "snack"] as const;
 
 const doshaColors = {
-  vata: "bg-sky-100 text-sky-700 border-sky-300",
-  pitta: "bg-orange-100 text-orange-700 border-orange-300",
-  kapha: "bg-emerald-100 text-emerald-700 border-emerald-300",
-  tridosha: "bg-gold/20 text-gold-dark border-gold",
+  vata: "bg-sky-500/10 text-sky-700 dark:text-sky-300 border-sky-500/30",
+  pitta: "bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-500/30",
+  kapha: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/30",
+  tridosha: "bg-accent/10 text-accent-foreground border-accent/30",
 };
 
 const Nutrition = () => {
@@ -125,10 +61,7 @@ const Nutrition = () => {
     return plan;
   });
 
-  const [selectedMealSlot, setSelectedMealSlot] = useState<{
-    day: string;
-    type: string;
-  } | null>(null);
+  const [selectedMealSlot, setSelectedMealSlot] = useState<{ day: string; type: string } | null>(null);
 
   const handleSelectMeal = (meal: Meal) => {
     if (selectedMealSlot) {
@@ -144,7 +77,7 @@ const Nutrition = () => {
   };
 
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-background">
       <Navbar />
       <main className="pt-28 pb-20">
         <div className="container mx-auto px-4">
@@ -155,14 +88,14 @@ const Nutrition = () => {
             className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10"
           >
             <div>
-              <h1 className="font-display text-3xl md:text-4xl text-forest mb-2">
+              <h1 className="font-display text-3xl md:text-4xl text-foreground mb-2">
                 Nutrition Planner
               </h1>
               <p className="text-muted-foreground">
                 Personalized meal plans based on your Pitta dosha
               </p>
             </div>
-            <Button variant="forest" className="gap-2">
+            <Button variant="default" className="gap-2">
               <Download className="w-4 h-4" />
               Export Grocery List
             </Button>
@@ -175,24 +108,14 @@ const Nutrition = () => {
             transition={{ delay: 0.1 }}
             className="flex items-center justify-between mb-6"
           >
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setCurrentWeek((w) => w - 1)}
-              className="gap-2"
-            >
+            <Button variant="ghost" size="sm" onClick={() => setCurrentWeek((w) => w - 1)} className="gap-2">
               <ChevronLeft className="w-4 h-4" />
               Previous Week
             </Button>
-            <h2 className="font-display text-xl text-forest">
+            <h2 className="font-display text-xl text-foreground">
               Week of Jan {20 + currentWeek * 7}, 2025
             </h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setCurrentWeek((w) => w + 1)}
-              className="gap-2"
-            >
+            <Button variant="ghost" size="sm" onClick={() => setCurrentWeek((w) => w + 1)} className="gap-2">
               Next Week
               <ChevronRight className="w-4 h-4" />
             </Button>
@@ -208,28 +131,21 @@ const Nutrition = () => {
             <table className="w-full min-w-[800px]">
               <thead>
                 <tr>
-                  <th className="p-3 text-left font-display text-forest w-24">
-                    Meal
-                  </th>
+                  <th className="p-3 text-left font-display text-foreground w-24">Meal</th>
                   {weekDays.map((day) => (
-                    <th
-                      key={day}
-                      className="p-3 text-center font-display text-forest"
-                    >
-                      {day}
-                    </th>
+                    <th key={day} className="p-3 text-center font-display text-foreground">{day}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {mealTypes.map((mealType) => (
                   <tr key={mealType} className="border-t border-border">
-                    <td className="p-3 capitalize font-medium text-forest">
+                    <td className="p-3 capitalize font-medium text-foreground">
                       <div className="flex items-center gap-2">
-                        {mealType === "breakfast" && <Flame className="w-4 h-4 text-saffron" />}
-                        {mealType === "lunch" && <Utensils className="w-4 h-4 text-forest" />}
-                        {mealType === "dinner" && <ChefHat className="w-4 h-4 text-gold" />}
-                        {mealType === "snack" && <Leaf className="w-4 h-4 text-sage" />}
+                        {mealType === "breakfast" && <Flame className="w-4 h-4 text-secondary" />}
+                        {mealType === "lunch" && <Utensils className="w-4 h-4 text-primary" />}
+                        {mealType === "dinner" && <ChefHat className="w-4 h-4 text-accent" />}
+                        {mealType === "snack" && <Leaf className="w-4 h-4 text-muted-foreground" />}
                         {mealType}
                       </div>
                     </td>
@@ -241,14 +157,10 @@ const Nutrition = () => {
                             <motion.div
                               whileHover={{ scale: 1.02 }}
                               className={`p-3 rounded-xl border-2 ${doshaColors[meal.dosha]} cursor-pointer`}
-                              onClick={() =>
-                                setSelectedMealSlot({ day, type: mealType })
-                              }
+                              onClick={() => setSelectedMealSlot({ day, type: mealType })}
                             >
                               <div className="text-2xl mb-1">{meal.image}</div>
-                              <div className="text-xs font-medium truncate">
-                                {meal.name}
-                              </div>
+                              <div className="text-xs font-medium truncate">{meal.name}</div>
                               <div className="flex items-center gap-1 text-xs mt-1 opacity-70">
                                 <Clock className="w-3 h-3" />
                                 {meal.prepTime}
@@ -256,10 +168,8 @@ const Nutrition = () => {
                             </motion.div>
                           ) : (
                             <button
-                              onClick={() =>
-                                setSelectedMealSlot({ day, type: mealType })
-                              }
-                              className="w-full h-24 border-2 border-dashed border-muted rounded-xl flex items-center justify-center text-muted-foreground hover:border-saffron hover:text-saffron transition-colors"
+                              onClick={() => setSelectedMealSlot({ day, type: mealType })}
+                              className="w-full h-24 border-2 border-dashed border-muted rounded-xl flex items-center justify-center text-muted-foreground hover:border-secondary hover:text-secondary transition-colors"
                             >
                               <Plus className="w-5 h-5" />
                             </button>
@@ -284,12 +194,11 @@ const Nutrition = () => {
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="bg-cream rounded-3xl p-6 max-w-2xl w-full max-h-[80vh] overflow-auto"
+                className="bg-card rounded-3xl p-6 max-w-2xl w-full max-h-[80vh] overflow-auto"
                 onClick={(e) => e.stopPropagation()}
               >
-                <h3 className="font-display text-2xl text-forest mb-4">
-                  Choose a Meal for {selectedMealSlot.day} -{" "}
-                  {selectedMealSlot.type}
+                <h3 className="font-display text-2xl text-foreground mb-4">
+                  Choose a Meal for {selectedMealSlot.day} - {selectedMealSlot.type}
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
                   {sampleMeals
@@ -313,11 +222,7 @@ const Nutrition = () => {
                       </motion.button>
                     ))}
                 </div>
-                <Button
-                  variant="ghost"
-                  className="w-full mt-4"
-                  onClick={() => setSelectedMealSlot(null)}
-                >
+                <Button variant="ghost" className="w-full mt-4" onClick={() => setSelectedMealSlot(null)}>
                   Cancel
                 </Button>
               </motion.div>
@@ -333,10 +238,7 @@ const Nutrition = () => {
           >
             <span className="text-muted-foreground text-sm">Dosha Balance:</span>
             {Object.entries(doshaColors).map(([dosha, color]) => (
-              <span
-                key={dosha}
-                className={`px-3 py-1 rounded-full text-sm capitalize ${color}`}
-              >
+              <span key={dosha} className={`px-3 py-1 rounded-full text-sm capitalize ${color}`}>
                 {dosha}
               </span>
             ))}

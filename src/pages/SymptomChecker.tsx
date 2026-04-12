@@ -5,11 +5,11 @@ import { LotusIcon, MandalaIcon } from "@/components/icons/SacredIcons";
 
 export default function SymptomCheckerPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cream-50 via-background to-cream-100 dark:from-background dark:via-background dark:to-forest-950/20">
+    <div className="min-h-screen bg-background">
       {/* Background decorations */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <MandalaIcon className="absolute -top-40 -right-40 w-80 h-80 text-sacred-gold/5 animate-spin-slow" />
-        <MandalaIcon className="absolute -bottom-40 -left-40 w-80 h-80 text-forest-500/5 animate-spin-slow" />
+        <MandalaIcon className="absolute -top-40 -right-40 w-80 h-80 text-accent/5 animate-spin-slow" />
+        <MandalaIcon className="absolute -bottom-40 -left-40 w-80 h-80 text-primary/5 animate-spin-slow" />
       </div>
 
       <Navbar />
@@ -22,10 +22,10 @@ export default function SymptomCheckerPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-10"
           >
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-sacred-saffron to-sacred-gold mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-secondary to-accent mb-4">
               <LotusIcon className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-3xl md:text-4xl font-playfair font-bold text-foreground mb-3">
+            <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-3">
               AI Symptom Checker
             </h1>
             <p className="text-lg text-muted-foreground max-w-xl mx-auto">
@@ -51,7 +51,7 @@ export default function SymptomCheckerPage() {
             className="mt-12 grid md:grid-cols-3 gap-4"
           >
             <div className="glass-card p-5 rounded-xl text-center">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center mx-auto mb-3">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-sky-500 to-indigo-500 flex items-center justify-center mx-auto mb-3">
                 <span className="text-white font-semibold text-sm">V</span>
               </div>
               <h3 className="font-semibold text-foreground mb-1">Vata</h3>
@@ -69,7 +69,7 @@ export default function SymptomCheckerPage() {
               </p>
             </div>
             <div className="glass-card p-5 rounded-xl text-center">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-teal-500 flex items-center justify-center mx-auto mb-3">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 flex items-center justify-center mx-auto mb-3">
                 <span className="text-white font-semibold text-sm">K</span>
               </div>
               <h3 className="font-semibold text-foreground mb-1">Kapha</h3>

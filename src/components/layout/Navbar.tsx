@@ -30,6 +30,10 @@ export const Navbar = () => {
   const location = useLocation();
   const { user, profile, signOut } = useAuth();
 
+  // Only use transparent hero-style navbar on the homepage
+  const isHeroPage = location.pathname === "/";
+  const useHeroStyle = isHeroPage && !isScrolled;
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -50,9 +54,9 @@ export const Navbar = () => {
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? "bg-background/95 backdrop-blur-md shadow-soft" 
-          : "bg-transparent"
+        useHeroStyle
+          ? "bg-transparent"
+          : "bg-background/95 backdrop-blur-md shadow-soft"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -62,7 +66,7 @@ export const Navbar = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group">
           <LotusIcon className="w-8 h-8 text-saffron transition-colors" />
-          <span className={`font-display text-xl transition-colors ${isScrolled ? "text-foreground" : "text-primary-foreground"}`}>
+          <span className={`font-display text-xl transition-colors ${useHeroStyle ? "text-white" : "text-foreground"}`}>
             VedicWell
           </span>
         </Link>
@@ -74,9 +78,9 @@ export const Navbar = () => {
               key={link.href}
               to={link.href}
               className={`font-body text-sm transition-colors animated-underline ${
-                isScrolled 
-                  ? "text-foreground hover:text-secondary" 
-                  : "text-primary-foreground/90 hover:text-primary-foreground"
+                useHeroStyle
+                  ? "text-white/90 hover:text-white"
+                  : "text-foreground hover:text-secondary"
               } ${location.pathname === link.href ? "font-semibold" : ""}`}
             >
               {link.label}
@@ -86,12 +90,12 @@ export const Navbar = () => {
 
         {/* Auth Section */}
         <div className="hidden md:flex items-center gap-2">
-          <ThemeToggle className={isScrolled ? "" : "text-primary-foreground"} />
+          <ThemeToggle className={useHeroStyle ? "text-white" : ""} />
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button 
-                  variant={isScrolled ? "ghost" : "hero"}
+                  variant={useHeroStyle ? "hero" : "ghost"}
                   size="sm" 
                   className="gap-2"
                 >
@@ -126,7 +130,7 @@ export const Navbar = () => {
           ) : (
             <>
               <Link to="/auth">
-                <Button variant={isScrolled ? "ghost" : "hero"} size="sm">
+                <Button variant={useHeroStyle ? "hero" : "ghost"} size="sm">
                   Sign In
                 </Button>
               </Link>
@@ -145,9 +149,9 @@ export const Navbar = () => {
           className="lg:hidden p-2"
         >
           {isOpen ? (
-            <X className={isScrolled ? "text-foreground" : "text-primary-foreground"} />
+            <X className={useHeroStyle ? "text-white" : "text-foreground"} />
           ) : (
-            <Menu className={isScrolled ? "text-foreground" : "text-primary-foreground"} />
+            <Menu className={useHeroStyle ? "text-white" : "text-foreground"} />
           )}
         </button>
       </nav>
